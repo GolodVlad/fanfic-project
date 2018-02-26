@@ -1,0 +1,36 @@
+<h1 class="page-header">Fanfics</h1>
+
+<div class="panel panel-primary" *ngFor="let fanfic of fanficPosts">
+
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <a [routerLink]="['/view-fanfic/', fanfic._id]">{{ fanfic.title }}</a>
+    </h3>
+  </div>
+
+  <div class="panel-body">
+    <img [src]="fanfic.pictureURL" height="100px" width="100px"> {{ fanfic.description }}
+  </div>
+
+  <div class="panel-footer">
+    <strong>Posted by: </strong>{{ fanfic.createdBy }}
+    <br />
+    <strong>Date: </strong>{{ fanfic.createdAt | date:'dd MMM, yyyy' }}
+    <br />
+
+    <a [routerLink]="['/edit-fanfic/', fanfic._id]" *ngIf="username === fanfic.createdBy">
+      <button type="button" name="button" class="btn btn-sm btn-info">Edit</button>
+    </a>
+    <!-- Delete Button -->
+    <a [routerLink]="['/delete-fanfic/', fanfic._id]" *ngIf="username === fanfic.createdBy">
+      <button type="button" name="button" class="btn btn-sm btn-danger">Delete</button>
+    </a>
+    <!-- Likes Dropdown  -->
+    <div class="dropdown">
+      <!-- Like Button -->
+      <button type="button" name="button" class="btn btn-sm btn-success" *ngIf="(username !== fanfic.createdBy) && (isAuthorized())"
+        (click)="likeFanfic(fanfic._id)">
+        <span class="glyphicon glyphicon-thumbs-up">&nbsp;</span>{{ fanfic.likes }}</button>
+    </div>
+  </div>
+</div>
