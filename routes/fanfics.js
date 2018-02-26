@@ -13,11 +13,11 @@ cloudinary.config({
 function checkToken(req, res, next) {
   const token = req.headers['authorization'];
   if (!token) {
-    res.json({ success: false, message: 'No token provided' }); 
+    res.json({ success: false, message: 'No token provided' });
   } else {
     jwt.verify(token, config.secret, (err, decoded) => {
       if (err) {
-        res.json({ success: false, message: `Token invalid: ${err}` }); 
+        res.json({ success: false, message: `Token invalid: ${err}` });
       } else {
         req.decoded = decoded;
         next();

@@ -142,15 +142,7 @@ export class ProfileComponent implements OnInit {
     }
     myReader.readAsDataURL(file);
   }
-
-  public fileOver(event) {
-    console.log(event);
-  }
-
-  public fileLeave(event) {
-    console.log(event);
-  }
-
+  
   getUserFanfics(username) {
     this.fanficsService.getUserFanfics(username).subscribe(data => {
       this.fanficPosts = data.fanfics;
