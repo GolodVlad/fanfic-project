@@ -3,7 +3,6 @@ const Fanfic = require('../models/fanfic');
 const jwt = require('jsonwebtoken');
 const config = require('../config/database');
 const cloudinary = require('cloudinary');
-const fs = require('fs');
 
 cloudinary.config({
   cloud_name: 'fanficcloud',
